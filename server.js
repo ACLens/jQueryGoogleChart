@@ -24,7 +24,7 @@ function start() {
         app.use(express.methodOverride());
         //perform route lookup based on url and HTTP method
         app.use(app.router);
-        app.use(express.static(__dirname + '/app'));
+        app.use(express.static(__dirname + '/app/'));
 
 
     });
