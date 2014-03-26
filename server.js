@@ -1,5 +1,5 @@
-var app = require('express.io')(),
-    express = require("express"),
+var express = require('express'),
+    app = express(),
     http = require('http'),
     mysql = require("mysql"),
     api = express(),
@@ -7,8 +7,7 @@ var app = require('express.io')(),
     application_root = __dirname;
 
 function start() {
-    app.http().io()
-
+    
     app.listen(8888)
 
     console.log("Server has started.");
