@@ -1,0 +1,312 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <title>chart js demo</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <link rel="shortcut icon" href="/favicon.ico">
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <!-- build:css styles/vendor.css -->
+        <!-- bower:css -->
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+        <!-- endbower -->
+        <!-- endbuild -->
+        <!-- build:css(.tmp) styles/main.css -->
+        <link rel="stylesheet" href="styles/main.css">
+        <!-- endbuild -->
+    </head>
+    <body>
+        <!--[if lt IE 10]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+
+        <div class="container">
+            <div class="header">
+                <div>
+                    <ul class="nav nav-pills" style="display:block;">
+                        <li class="active"><a href="chartjs-demo.html" class="headerLink" id="chartJS">ChartJS</a></li>
+                        <li><a href="google-demo.html" class="headerLink" id="google">Google Chart</a></li>
+                    </ul>
+                </div>
+                
+                <ul class="nav nav-pills pull-right">
+                    <li><a class="chartLink" id="Line">Line</a></li>
+                    <li><a class="chartLink" id="Bar">Bar</a></li>
+                    <li><a class="chartLink" id="Radar">Radar</a></li>
+                    <li><a class="chartLink" id="PolarArea">Polar Area</a></li>
+                    <li><a class="chartLink" id="Pie">Pie</a></li>
+                    <li><a class="chartLink" id="Doughnut">Doughnut</a></li>
+                </ul>
+                <h3 class="text-muted">chart js demo</h3>
+            </div>
+            <div id="chartContainer"><canvas class="chartDiv" id="demoChart" width="600" height="400"></canvas></div>
+
+            <div class="footer">
+                <p><span class="glyphicon glyphicon-heart"></span> straight dope, right?</p>
+            </div>
+
+        </div>
+
+
+        <!-- build:js scripts/vendor.js -->
+        <!-- bower:js -->
+        <script src="bower_components/jquery/dist/jquery.js"></script>
+        <!-- endbower -->
+        <!-- endbuild -->
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X');ga('send','pageview');
+        </script>
+
+        <!-- build:js scripts/plugins.js -->
+        <script src="bower_components/bootstrap/js/affix.js"></script>
+        <script src="bower_components/bootstrap/js/alert.js"></script>
+        <script src="bower_components/bootstrap/js/dropdown.js"></script>
+        <script src="bower_components/bootstrap/js/tooltip.js"></script>
+        <script src="bower_components/bootstrap/js/modal.js"></script>
+        <script src="bower_components/bootstrap/js/transition.js"></script>
+        <script src="bower_components/bootstrap/js/button.js"></script>
+        <script src="bower_components/bootstrap/js/popover.js"></script>
+        <script src="bower_components/bootstrap/js/carousel.js"></script>
+        <script src="bower_components/bootstrap/js/scrollspy.js"></script>
+        <script src="bower_components/bootstrap/js/collapse.js"></script>
+        <script src="bower_components/bootstrap/js/tab.js"></script>
+        <!-- endbuild -->
+
+        
+
+        <!-- build:js({app,.tmp}) scripts/main.js -->
+        <script src="scripts/main.js"></script>
+        <script src="scripts/chart.min.js"></script>
+        <script src="scripts/chartController.js"></script>
+        <script type="text/javascript">
+
+            $(function(){
+                var chartConfig
+                $("#Line").on("click", function(){
+                    $(".nav").children("li").removeClass("active")
+                    $(this).parent("li").addClass("active")
+                    var thisChartType = "Line"
+                    $('canvas').remove();
+                    $('#chartContainer').html('<canvas id = "demoChart"></canvas>')
+                    console.log(thisChartType)
+                    chartConfig = {
+                        chartReference: "#demoChart",
+                        chartType: thisChartType,
+                        data: {
+                                labels : ["January","February","March","April","May","June","July"],
+                                datasets : [
+                                    {
+                                        fillColor : "rgba(220,220,220,0.5)",
+                                        strokeColor : "rgba(220,220,220,1)",
+                                        pointColor : "rgba(220,220,220,1)",
+                                        pointStrokeColor : "#fff",
+                                        data : [65,59,90,81,56,55,40]
+                                    },
+                                    {
+                                        fillColor : "rgba(151,187,205,0.5)",
+                                        strokeColor : "rgba(151,187,205,1)",
+                                        pointColor : "rgba(151,187,205,1)",
+                                        pointStrokeColor : "#fff",
+                                        data : [28,48,40,19,96,27,100]
+                                    }
+                                ]
+                            },
+                            options: {}
+                    }
+
+                    DrawChart(chartConfig)
+                })
+                $("#Bar").on("click", function(){
+                    $(".nav").children("li").removeClass("active")
+                    $(this).parent("li").addClass("active")
+                    var thisChartType = "Bar"
+                    $('canvas').remove();
+                    $('#chartContainer').html('<canvas id = "demoChart"></canvas>')
+                    console.log(thisChartType)
+                    chartConfig = {
+                        chartReference: "#demoChart",
+                        chartType: thisChartType,
+                        data: {
+                                labels : ["January","February","March","April","May","June","July"],
+                                datasets : [
+                                    {
+                                        fillColor : "rgba(220,220,220,0.5)",
+                                        strokeColor : "rgba(220,220,220,1)",
+                                        pointColor : "rgba(220,220,220,1)",
+                                        pointStrokeColor : "#fff",
+                                        data : [65,59,90,81,56,55,40]
+                                    },
+                                    {
+                                        fillColor : "rgba(151,187,205,0.5)",
+                                        strokeColor : "rgba(151,187,205,1)",
+                                        pointColor : "rgba(151,187,205,1)",
+                                        pointStrokeColor : "#fff",
+                                        data : [28,48,40,19,96,27,100]
+                                    }
+                                ]
+                            },
+                            options: {}
+                    }
+
+                    DrawChart(chartConfig)
+                })
+                $("#Radar").on("click", function(){
+                    $(".nav").children("li").removeClass("active")
+                    $(this).parent("li").addClass("active")
+                    var thisChartType = "Radar"
+                    $('canvas').remove();
+                    $('#chartContainer').html('<canvas id = "demoChart"></canvas>')
+                    console.log(thisChartType)
+                    chartConfig = {
+                        chartReference: "#demoChart",
+                        chartType: thisChartType,
+                        data: {
+                                labels : ["January","February","March","April","May","June","July"],
+                                datasets : [
+                                    {
+                                        fillColor : "rgba(220,220,220,0.5)",
+                                        strokeColor : "rgba(220,220,220,1)",
+                                        pointColor : "rgba(220,220,220,1)",
+                                        pointStrokeColor : "#fff",
+                                        data : [65,59,90,81,56,55,40]
+                                    },
+                                    {
+                                        fillColor : "rgba(151,187,205,0.5)",
+                                        strokeColor : "rgba(151,187,205,1)",
+                                        pointColor : "rgba(151,187,205,1)",
+                                        pointStrokeColor : "#fff",
+                                        data : [28,48,40,19,96,27,100]
+                                    }
+                                ]
+                            },
+                            options: {}
+                    }
+
+                    DrawChart(chartConfig)
+                })
+                $("#PolarArea").on("click", function(){
+                    $(".nav").children("li").removeClass("active")
+                    $(this).parent("li").addClass("active")
+                    var thisChartType = "PolarArea"
+                    $('canvas').remove();
+                    $('#chartContainer').html('<canvas id = "demoChart"></canvas>')
+                    console.log(thisChartType)
+                    chartConfig = {
+                        chartReference: "#demoChart",
+                        chartType: thisChartType,
+                        data: [{
+                                value : 30,
+                                color: "#D97041"
+                            },
+                            {
+                                value : 90,
+                                color: "#C7604C"
+                            },
+                            {
+                                value : 24,
+                                color: "#21323D"
+                            },
+                            {
+                                value : 58,
+                                color: "#9D9B7F"
+                            },
+                            {
+                                value : 82,
+                                color: "#7D4F6D"
+                            },
+                            {
+                                value : 8,
+                                color: "#584A5E"
+                            }],
+                            options: {}
+                    }
+
+                    DrawChart(chartConfig)
+                })
+                $("#Pie").on("click", function(){
+                    $(".nav").children("li").removeClass("active")
+                    $(this).parent("li").addClass("active")
+                    var thisChartType = "Pie"
+                    $('canvas').remove();
+                    $('#chartContainer').html('<canvas id = "demoChart"></canvas>')
+                    console.log(thisChartType)
+                    chartConfig = {
+                        chartReference: "#demoChart",
+                        chartType: thisChartType,
+                        data: [
+                            {
+                                value: 30,
+                                color:"#F38630"
+                            },
+                            {
+                                value : 50,
+                                color : "#E0E4CC"
+                            },
+                            {
+                                value : 100,
+                                color : "#69D2E7"
+                            }           
+                        ],
+                            options: {}
+                    }
+
+                    DrawChart(chartConfig)
+                })
+                $("#Doughnut").on("click", function(){
+                    $(".nav").children("li").removeClass("active")
+                    $(this).parent("li").addClass("active")
+                    var thisChartType = "Doughnut"
+                    $('canvas').remove();
+                    $('#chartContainer').html('<canvas id = "demoChart"></canvas>')
+                    console.log(thisChartType)
+                    chartConfig = {
+                        chartReference: "#demoChart",
+                        chartType: thisChartType,
+                        data: [
+                            {
+                                value: 30,
+                                color:"#F7464A"
+                            },
+                            {
+                                value : 50,
+                                color : "#E2EAE9"
+                            },
+                            {
+                                value : 100,
+                                color : "#D4CCC5"
+                            },
+                            {
+                                value : 40,
+                                color : "#949FB1"
+                            },
+                            {
+                                value : 120,
+                                color : "#4D5360"
+                            }
+
+                        ],
+                            options: {}
+                    }
+
+                    DrawChart(chartConfig)
+                })
+            })
+
+            
+
+        </script>
+        <!-- endbuild -->
+</body>
+</html>
