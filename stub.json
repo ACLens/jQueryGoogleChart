@@ -1,0 +1,10 @@
+{
+		"cols": [
+            {"id": "Period", "label": "Quarter", "type": "string"},
+            {"id": "orders", "label": "Orders", "type": "number"}],
+        "rows": [
+            {"c":[{"v": "Q1"}, {"v": 11123}]},
+            {"c":[{"v": "Q2"}, {"v": 22134}]},
+            {"c":[{"v": "Q3"}, {"v": 24134}]},
+            {"c":[{"v": "Q4"}, {"v":23243}]}]
+	}
