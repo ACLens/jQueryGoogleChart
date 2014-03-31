@@ -20,9 +20,9 @@ $('#demoChart').drawGChart({
 
 Currently you can use the following "chartTypes":
 
-Line
-Bar
-Column
+Line,
+Bar,
+Column,
 Pie
 
 We will be adding additional charTypes in upcoming releases.
